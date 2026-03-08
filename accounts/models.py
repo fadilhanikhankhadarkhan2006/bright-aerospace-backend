@@ -17,8 +17,7 @@ class User(AbstractUser):
         default='student'
     )
 
-
-     email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True)
 
     def clean(self):
         super().clean()
@@ -27,7 +26,6 @@ class User(AbstractUser):
         except ValidationError:
             raise ValidationError("Invalid email address.")
         validate_strong_password(self.password)
-        
 
     def __str__(self):
         return f"{self.username} - {self.role}"
