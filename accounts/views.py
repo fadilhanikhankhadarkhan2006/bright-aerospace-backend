@@ -4,7 +4,8 @@ from django.shortcuts import render
 
 
 
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -18,6 +19,7 @@ from .validators import validate_strong_password
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def register_user(request):
     """
     API to register a new user (defaults to student)
@@ -86,6 +88,7 @@ def register_user(request):
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def login_user(request):
     """
     API to login a user and return access/refresh tokens
